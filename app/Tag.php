@@ -18,7 +18,6 @@ class Tag extends Model
 
     public function skus()
     {
-        return $this->belongsToMany(Skus::class,'sku_tag','tag_id','sku_id');
+        return $this->belongsToMany(Sku::class,'sku_tag','tag_id','sku_id');
     }
-
 }
