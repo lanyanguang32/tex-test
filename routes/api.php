@@ -46,9 +46,11 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
 
     //11 banner
     $api->get('home/banners', 'HomeController@getBanner');
-
     //12 推荐
     $api->get('home/recommends', 'HomeController@getRecommend');
+
+    //分类
+    $api->get('category/tags', 'CategoryController@getTag');
 
     //13 列表
 

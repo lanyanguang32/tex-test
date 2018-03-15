@@ -14,6 +14,9 @@ class RecommendTransformer extends TransformerAbstract
             'sku_id'=>$sku->id,
             'sku_image'=>\Voyager::image($sku->image),
             'sku_title'=>$sku->sku,
+            'material'=>$sku->material,
+            'weight'=>$sku->weight,
+            'favorited'=>0,//?是否收藏
         ];
     }
 }

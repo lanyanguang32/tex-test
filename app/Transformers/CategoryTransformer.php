@@ -2,17 +2,26 @@
 
 namespace App\Transformers;
 
-use App\Models\Category;
+use App\Tagcat;
+use App\Tag;
 use League\Fractal\TransformerAbstract;
 
 class CategoryTransformer extends TransformerAbstract
 {
-    public function transform(Category $category)
+	protected $defaultIncludes = ['tags'];
+
+    public function transform(Tagcat $tagCat)
     {
         return [
-            'id' => $category->id,
-            'name' => $category->name,
-            'description' => $category->description,
+            'id' => $tagCat->id,
+            'name' => $tagCat->name,
+            'parent_id' => $tagCat->parent_id
         ];
     }
+
+    public function includeTags(Tagcat $tagCat)
+    {
+        return $this->collection($tagCat->tags, new TagTransformer());
+    }
+
 }

@@ -21,9 +21,13 @@ function getBanner() { return; }
  * @apiExample Example usage:
  * curl -i http://localhost/home/recommends
  * @apiParam {String} tag 推荐组标签（特价、热销、新品）.
+ * @apiParam {String} more 推荐更多列表,默认值1.
  * @apiSuccess {String} sku_id 商品id.
  * @apiSuccess {String} sku_image 商品图片.
  * @apiSuccess {String} sku_title 商品标题.
+ * @apiSuccess {String} material 材质.
+ * @apiSuccess {String} weight 平方克重.
+ * @apiSuccess {String} favorited 是否收藏 0 否 1 是.
  *
  */
 function getRecommend() { return; }

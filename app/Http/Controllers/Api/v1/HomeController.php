@@ -23,7 +23,11 @@ class HomeController extends ApiController
     public function getRecommend(Request $request)
     {
        $tag = Tag::where('name', $request->tag)->first();
-       $recommends = $tag->skus()->orderBy('id', 'desc')->take(6)->get();
+       if($request->has('more')){
+          $recommends = $tag->skus()->orderBy('id', 'desc')->get();
+       }else{
+          $recommends = $tag->skus()->orderBy('id', 'desc')->take(6)->get();
+       }
 
        return $this->response->collection($recommends, new RecommendTransformer());
     }

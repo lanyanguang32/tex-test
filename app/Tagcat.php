@@ -13,4 +13,9 @@ class Tagcat extends Model
         return $this->belongsTo(self::class);
     }
 
+    public function tags()
+    {
+    	return $this->hasMany(Tag::class,'cat_id');
+    }
+
 }

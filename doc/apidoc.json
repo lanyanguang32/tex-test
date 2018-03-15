@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "后端API",
   "title": "色织网",
-  "url" : "https://tex-mall.test/api/v1",
-  "sampleUrl": "https://tex-mall.test/api/v1",
+  "url" : "https://tex-mall.test/api",
+  "sampleUrl": "https://tex-mall.test/api",
   "template": {
   	"withCompare": true,
   	"withGenerator": true
