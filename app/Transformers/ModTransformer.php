@@ -11,7 +11,7 @@ class ModTransformer extends TransformerAbstract
     {
         return [
             'id' => $mod->id,
-            'image' => $mod->image
+            'image' => \Voyager::image($mod->image)
         ];
     }
 }
