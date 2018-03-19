@@ -23,4 +23,9 @@ class Modcat extends Model
     {
         return $this->belongsTo(self::class);
     }
+
+    public function mods()
+    {
+    	return $this->hasMany(Mod::class);
+    }
 }

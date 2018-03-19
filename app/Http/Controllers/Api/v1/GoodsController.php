@@ -34,7 +34,7 @@ class GoodsController extends ApiController
      		if($request->has('keyword') && !empty($request->keyword))
      		{
      			if($request->hasFile('keyword')){
-     				//调用张工接口，返回id
+     				//调用张工接口，返回id todo
      				$img_skus = ['211A'];
      				//
                     $query = $query->whereIn('sku', $img_skus);
@@ -58,7 +58,7 @@ class GoodsController extends ApiController
     }
 
     //商品详情
-    public function GetGoodsDetail(Request $request)
+    public function getGoodsDetail(Request $request)
     {
      		
      	$sku = Sku::find($request->id);

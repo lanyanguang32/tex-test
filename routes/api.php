@@ -57,7 +57,18 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
     //14 商品筛选
     $api->post('goods/find', 'GoodsController@postGoodsFind');
     //15 商品详情
-    $api->get('goods/detail/{id}', 'GoodsController@GetGoodsDetail');
+    $api->get('goods/detail/{id}', 'GoodsController@getGoodsDetail');
+
+    //3D
+    //16 3D服装行业
+    $api->get('3d/categories', 'WarpController@getCategories');
+    //17 3D模特图片
+    $api->get('3d/models', 'WarpController@getModels');
+    //18 3D面料试衣
+    $api->post('3d/warp', 'WarpController@postWarp');
+
+
+
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
