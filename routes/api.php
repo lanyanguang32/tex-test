@@ -50,11 +50,14 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
     $api->get('home/recommends', 'HomeController@getRecommend');
 
     //分类
+    //13 分类列表
     $api->get('category/tags', 'CategoryController@getTag');
 
-    //13 列表
-
-
+    //商品
+    //14 商品筛选
+    $api->post('goods/find', 'GoodsController@postGoodsFind');
+    //15 商品详情
+    $api->get('goods/detail/{id}', 'GoodsController@GetGoodsDetail');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

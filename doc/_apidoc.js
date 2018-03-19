@@ -109,10 +109,11 @@
 /**
  * @apiDefine GoodsParagm
  * @apiVersion 0.1.0
- * @apiParam {Number} limit 单独获取个数，应用于首页.
- * @apiParam {Number} pagesize 每页显示条数.
- * @apiParam {Number} page 页码.
- * @apiParam {String} filter 筛选条件.
+ * @apiParam {Number} pagesize 每页显示条数(queryString参数)。
+ * @apiParam {Number} page 页码（queryString参数）。
+ * @apiParam {String} tags 筛选条件，多个条件用逗号(,)分隔。
+ * @apiParam {String} keyword 搜索条件，图片搜索时为图片文件。
+ * @apiParam {String} type 搜索类型，选项为(prod产品)(shop商家)，默认为产品。
  */
 
  // ------------------------------------------------------------------------------------------
@@ -145,8 +146,24 @@
  * @apiSuccess {String} image 商品图片.
  * @apiSuccess {String} material 材质.
  * @apiSuccess {String} weight 平方克重.
+ * @apiSuccess {String} is_fav 是否收藏(1是，0否).
  */
+ // ------------------------------------------------------------------------------------------
 
+// Shop Success.
+// ------------------------------------------------------------------------------------------
+/**
+ * @apiDefine ShopSuccess
+ * @apiSuccess {String} id 店铺ID.
+ * @apiSuccess {String} name 店铺名称.
+ * @apiSuccess {String} location 产地.
+ * @apiSuccess {String[]} skus 店铺商品.
+ * @apiSuccess {String} skus.id 商品ID.
+ * @apiSuccess {String} skus.sku 商品标题.
+ * @apiSuccess {String} skus.image 商品图片.
+ * @apiSuccess {String} skus.material 材质.
+ * @apiSuccess {String} skus.weight 平方克重.
+ * @apiSuccess {String} skus.is_fav 是否收藏(1是，0否).
 
  // ------------------------------------------------------------------------------------------
 // Goods Deailt Success.
@@ -166,4 +183,5 @@
  * @apiSuccess {String} simlilar.image 商品图片.
  * @apiSuccess {String} simlilar.material 材质.
  * @apiSuccess {String} simlilar.weight 平方克重.
+ * @apiSuccess {String} simlilar.is_fav 是否收藏(1是，0否).
  */

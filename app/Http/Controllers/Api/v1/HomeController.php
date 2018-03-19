@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Api\v1\ApiController;
 use App\Banner;
 use App\Tag;
+use App\Tagcat;
 use App\Transformers\BannerTransformer;
 use App\Transformers\RecommendTransformer;
 
@@ -22,12 +23,9 @@ class HomeController extends ApiController
     //首页推荐
     public function getRecommend(Request $request)
     {
-       $tag = Tag::where('name', $request->tag)->first();
-       if($request->has('more')){
-          $recommends = $tag->skus()->orderBy('id', 'desc')->get();
-       }else{
-          $recommends = $tag->skus()->orderBy('id', 'desc')->take(6)->get();
-       }
+       $tagCat = Tagcat::where('name', '推荐')->first();
+        
+       $recommends = $tagCat->tags()->get();
 
        return $this->response->collection($recommends, new RecommendTransformer());
     }

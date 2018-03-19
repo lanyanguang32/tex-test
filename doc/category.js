@@ -10,8 +10,8 @@
  * @apiSuccess {String} name 分类名称.
  * @apiSuccess {Number} parent_id 分类父ID,默认0.
  * @apiSuccess {Array} tags 末级分类拥有关联标签tags.
- * @apiSuccess {Array} tags.id 标签ID.
- * @apiSuccess {Array} tags.name 标签名称.
+ * @apiSuccess {Number} tags.id 标签ID.
+ * @apiSuccess {String} tags.name 标签名称.
  *
  */
 function getTag() { return; }

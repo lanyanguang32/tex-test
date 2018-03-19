@@ -2,21 +2,28 @@
 
 namespace App\Transformers;
 
-use App\Sku;
+use App\Tag;
 use League\Fractal\TransformerAbstract;
 
 class RecommendTransformer extends TransformerAbstract
 {
+    
 
-    public function transform(Sku $sku)
+    protected $defaultIncludes = ['skus'];
+
+
+    public function transform(Tag $tag)
     {
         return [
-            'sku_id'=>$sku->id,
-            'sku_image'=>\Voyager::image($sku->image),
-            'sku_title'=>$sku->sku,
-            'material'=>$sku->material,
-            'weight'=>$sku->weight,
-            'favorited'=>0,//?是否收藏
+            'tag_id'=>$tag->id,
+            'tag_name'=>$tag->name,
         ];
+    }
+
+    public function includeSkus(Tag $tag)
+    {
+        $skus = $tag->skus()->orderBy('id', 'desc')->take(6)->get();
+
+        return $this->collection($skus, new RecommendSkuTransformer());
     }
 }
