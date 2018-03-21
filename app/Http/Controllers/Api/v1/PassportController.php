@@ -35,7 +35,7 @@ class PassportController extends ApiController
 	            'expired_at' => $expiredAt->toDateTimeString(),
 	            'captcha_image_content' => $captcha->inline()
 	        ];
-           return $this->response->array($result)->setStatusCode(201);
+           return $this->response->array($result)->setStatusCode(200);
 	}
  
     //短信验证码
@@ -43,12 +43,12 @@ class PassportController extends ApiController
     {
     	$captchaData = \Cache::get($request->captcha_key);
         if (!$captchaData) {
-            return $this->response->error('图片验证码已失效', 422);
+            return $this->errorCustom('图片验证码已失效');
         }
         if (!hash_equals($captchaData['code'], $request->captcha_code)) {
             // 验证错误就清除缓存
             \Cache::forget($request->captcha_key);
-            return $this->response->errorUnauthorized('图片验证码错误');
+            return $this->errorCustom('图片验证码错误');
         }
         $phone = $captchaData['phone'];
         if (!app()->environment('production')) {
@@ -63,7 +63,8 @@ class PassportController extends ApiController
             } catch (\GuzzleHttp\Exception\ClientException $exception) {
                 $response = $exception->getResponse();
                 $result = json_decode($response->getBody()->getContents(), true);
-                return $this->response->errorInternal($result['msg'] ?? '短信发送异常');
+                return $this->errorCustom($result['msg'] ?? '短信发送异常');
+
             }
         }
         $key = 'verificationCode_'.str_random(15);
@@ -75,7 +76,7 @@ class PassportController extends ApiController
         return $this->response->array([
             'verification_key' => $key,
             'expired_at' => $expiredAt->toDateTimeString(),
-        ])->setStatusCode(201);
+        ])->setStatusCode(200);
     }
 
     //注册
@@ -83,10 +84,10 @@ class PassportController extends ApiController
     {
     	$verifyData = \Cache::get($request->verification_key);
         if (!$verifyData) {
-            return $this->response->error('验证码已失效', 422);
+             return $this->errorCustom('图片验证码已失效');
         }
         if (!hash_equals((string)$verifyData['code'], $request->verification_code)) {
-            return $this->response->errorUnauthorized('验证码错误');
+            return $this->errorCustom('验证码错误');
         }
         $user = User::create([
             'name' => $request->name,
@@ -101,7 +102,7 @@ class PassportController extends ApiController
                 'token_type' => 'Bearer',
                 'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60
             ])
-            ->setStatusCode(201);
+            ->setStatusCode(200);
     }
 
     //登录
@@ -119,7 +120,7 @@ class PassportController extends ApiController
             return $this->response->errorUnauthorized(trans('auth.failed'));
         }
 
-        return $this->respondWithToken($token)->setStatusCode(201);
+        return $this->respondWithToken($token)->setStatusCode(200);
     }
 
     //第三方登录
@@ -145,7 +146,7 @@ class PassportController extends ApiController
 
             $oauthUser = $driver->userFromToken($token);
         } catch (\Exception $e) {
-            return $this->response->errorUnauthorized('参数错误，未获取用户信息');
+            return $this->errorCustom('未获取用户信息');
         }
 
         switch ($type) {
@@ -172,7 +173,7 @@ class PassportController extends ApiController
         }
 
         $token = \Auth::guard('api')->fromUser($user);
-        return $this->respondWithToken($token)->setStatusCode(201);
+        return $this->respondWithToken($token)->setStatusCode(200);
     }
 
     //登录和修改密码验证码
@@ -191,7 +192,7 @@ class PassportController extends ApiController
             } catch (\GuzzleHttp\Exception\ClientException $exception) {
                 $response = $exception->getResponse();
                 $result = json_decode($response->getBody()->getContents(), true);
-                return $this->response->errorInternal($result['msg'] ?? '短信发送异常');
+                return $this->errorCustom($result['msg'] ?? '短信发送异常');
             }
         }
         $key = 'verificationCodeByLogin_'.str_random(15);
@@ -201,7 +202,7 @@ class PassportController extends ApiController
         return $this->response->array([
             'verification_key' => $key,
             'expired_at' => $expiredAt->toDateTimeString(),
-        ])->setStatusCode(201);
+        ])->setStatusCode(200);
     }
 
     //短信登录
@@ -209,16 +210,16 @@ class PassportController extends ApiController
     {
         $verifyData = \Cache::get($request->verification_key);
         if (!$verifyData) {
-            return $this->response->error('验证码已失效', 422);
+             return $this->errorCustom('图片验证码已失效');
         }
         if (!hash_equals((string)$verifyData['code'], $request->verification_code)) {
-            return $this->response->errorUnauthorized('验证码错误');
+            return $this->errorCustom('验证码错误');
         }
         
         $user = User::where('phone', $verifyData['phone'])->first();
 
         if(!$user){
-            return $this->response->errorUnauthorized('验证码无效');
+            return $this->errorCustom('验证码无效');
         }
 
         $token = \Auth::guard('api')->fromUser($user);
@@ -226,7 +227,7 @@ class PassportController extends ApiController
         // 清除验证码缓存
         \Cache::forget($request->verification_key);
         
-        return $this->respondWithToken($token)->setStatusCode(201);
+        return $this->respondWithToken($token)->setStatusCode(200);
     }
 
 
@@ -235,16 +236,16 @@ class PassportController extends ApiController
     {
         $verifyData = \Cache::get($request->verification_key);
         if (!$verifyData) {
-            return $this->response->error('验证码已失效', 422);
+             return $this->errorCustom('图片验证码已失效');
         }
         if (!hash_equals((string)$verifyData['code'], $request->verification_code)) {
-            return $this->response->errorUnauthorized('验证码错误');
+            return $this->errorCustom('验证码错误');
         }
 
         $user = User::where('phone', $verifyData['phone'])->first();
 
         if(!$user){
-            return $this->response->errorUnauthorized('验证码无效');
+            return $this->errorCustom('验证码无效');
         }
 
         $user->update([

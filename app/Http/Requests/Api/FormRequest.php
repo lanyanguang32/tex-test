@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Api;
 
 use Dingo\Api\Http\FormRequest as BaseFormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class FormRequest extends BaseFormRequest
 {
@@ -14,5 +16,14 @@ class FormRequest extends BaseFormRequest
     public function authorize()
     {
         return true;
+    }
+
+    protected function failedValidation(Validator $validator) 
+    { 
+    	throw new HttpResponseException(response()->json([
+        	'message' => '客户端请求参数错误',
+        	'errors' => $validator->errors(),
+            'status_code' => 422,
+    	], 200)); 
     }
 }

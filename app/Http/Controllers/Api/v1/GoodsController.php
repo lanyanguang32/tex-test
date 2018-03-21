@@ -64,7 +64,7 @@ class GoodsController extends ApiController
      	$sku = Sku::find($request->id);
 
      	if(!$sku){
-     		return $this->response->errorNotFound();
+     		return $this->errorCustom('请求实体不存在');
      	}
 
     	return $this->response->item($sku, new SkuTransformer());
