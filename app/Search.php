@@ -16,6 +16,12 @@ class Search extends Model
 
     protected $table = 'searches';
 
+
+    protected $fillable = [
+        'user_id', 'tag', 'tag_id'
+    ];
+
+
     public function userId()
     {
         return $this->hasMany(Voyager::modelClass('User'));

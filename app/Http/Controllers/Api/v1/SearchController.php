@@ -102,7 +102,7 @@ class SearchController extends ApiController
         }
 
         //新增
-        Search::create([
+        Search::updateOrCreate([
           'user_id'=>$this->user()->id,
           'tag'=>$type,
           'tag_id'=>$request->obj_id,
