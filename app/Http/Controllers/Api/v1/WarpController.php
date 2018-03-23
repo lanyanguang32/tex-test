@@ -36,9 +36,12 @@ class WarpController extends ApiController
       //调用张工接口todo
     	//mod_id
     	//goods_id
+      //move_x=0
+      //move_y=0
+      //zoom=100
 
       return $this->response->array([
-      	'image'=> 'warp image',
+      	'image'=> 'http://47.104.186.103:80/img/fitting/out/12.jpg',
       ]);
     }
 }

@@ -44,6 +44,28 @@
 
 
  // ------------------------------------------------------------------------------------------
+// SearchHistorySuccess.
+// ------------------------------------------------------------------------------------------
+/**
+ * @apiDefine SearchHistorySuccess
+ * @apiSuccess {String} skus 商品.
+ * @apiSuccess {String[]} skus.id 商品ID.
+ * @apiSuccess {String} skus.sku 商品标题.
+ * @apiSuccess {String} skus.image 商品图片.
+ * @apiSuccess {String} skus.material 材质.
+ * @apiSuccess {String} skus.weight 平方克重. 
+ * @apiSuccess {String[]} shops 店铺.
+ * @apiSuccess {String} shop.id 店铺ID.
+ * @apiSuccess {String} shop.name 店铺名称.
+ * @apiSuccess {String} shop.image 店铺图片.
+ * @apiSuccess {String[]} viewshops 浏览过店铺.
+ * @apiSuccess {String} viewshops.id 店铺ID.
+ * @apiSuccess {String} viewshops.name 店铺名称.
+ * @apiSuccess {String} viewshops.image 店铺图片.
+ */
+
+
+ // ------------------------------------------------------------------------------------------
 // Trades Paragm.
 // ------------------------------------------------------------------------------------------
 /**

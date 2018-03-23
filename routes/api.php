@@ -67,8 +67,16 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
     //18 3D面料试衣
     $api->post('3d/warp', 'WarpController@postWarp');
 
-
-
+    $api->group(['middleware' => 'api.auth'], function($api) {
+    //需要授权
+        //最近搜索
+        //19 最近搜索产品列表
+        $api->get('search/history', 'SearchController@getHistory');
+        //20 添加最近搜索产品
+        $api->post('search/history', 'SearchController@postHistory');
+        //21 清空最近搜索产品
+        $api->post('search/historyDel', 'SearchController@postHistoryDel');
+    });
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

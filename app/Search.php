@@ -21,4 +21,24 @@ class Search extends Model
         return $this->hasMany(Voyager::modelClass('User'));
     }
 
+    //skus
+    public function skus()
+    {
+        return $this->hasMany(Sku::class,'id','tag_id');
+    }
+
+
+    //shops
+    public function shops()
+    {
+        return $this->hasMany(Shop::class,'user_id','tag_id');
+    }
+
+
+    //viewshops
+    public function viewshop()
+    {
+        return $this->hasMany(Shop::class,'user_id','tag_id');
+    }
+
 }

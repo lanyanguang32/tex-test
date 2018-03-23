@@ -35,6 +35,9 @@ function get3DModel() { return; }
  * curl -i http://localhost/3d/warp
  * @apiParam {Number} mod_id 模特ID.
  * @apiParam {Number} goods_id 面料ID.
+ * @apiParam {Number} move_x 布料在模特x轴的偏移，默认为0，可不传.
+ * @apiParam {Number} move_y 布料在模特y轴的偏移，默认为0，可不传.
+ * @apiParam {Number} zoom 布料放大百分比，默认为100，可不传.
  * @apiSuccess {String} image 试衣效果图.
  */
 function post3DWarp() { return; }
