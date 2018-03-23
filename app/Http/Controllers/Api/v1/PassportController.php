@@ -17,6 +17,7 @@ use App\Http\Requests\Api\SocialAuthorizationRequest;
 use App\Http\Requests\Api\PasswordByVerificationRequest;
 use App\Http\Requests\Api\LoginByVerificationRequest;
 use App\Http\Requests\Api\VerificationCodeByLoginAndPasswordRequest;
+use App\Http\Requests\Api\LoginRequest;
 
 
 class PassportController extends ApiController
@@ -106,7 +107,7 @@ class PassportController extends ApiController
     }
 
     //登录
-    public function postLogin(AuthorizationRequest $request)
+    public function postLogin(LoginRequest $request)
     {
     	$username = $request->username;
 
