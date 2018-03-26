@@ -15,6 +15,8 @@ class Receiver extends Model
 	 use Translatable,
         HasRelationships;
 
+        protected $fillable = ['user_id','user','phone','province', 'city', 'area', 'street', 'address', 'def'];
+
     
        public function save(array $options = [])
     {

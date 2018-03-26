@@ -39,6 +39,37 @@
  *
  */
 
+  // ------------------------------------------------------------------------------------------
+// ReceiverSuccess.
+// ------------------------------------------------------------------------------------------
+/**
+ * @apiDefine ReceiverSuccess
+ * @apiSuccess {String} id 记录ID.
+ * @apiSuccess {String} name 联系人.
+ * @apiSuccess {String} phone 电话.
+ * @apiSuccess {String} province 省份.
+ * @apiSuccess {String} city 城市.
+ * @apiSuccess {String} area 地区.
+ * @apiSuccess {String} street 街道.
+ * @apiSuccess {String} tag 标签.
+ * @apiSuccess {String} def 是否默认地址，1默认.
+ */
+
+  // ------------------------------------------------------------------------------------------
+// ReceiverParagm.
+// ------------------------------------------------------------------------------------------
+/**
+ * @apiDefine ReceiverParagm
+ * @apiParam {String} name 联系人.
+ * @apiParam {String} phone 电话.
+ * @apiParam {String} province 省份.
+ * @apiParam {String} city 城市.
+ * @apiParam {String} area 地区.
+ * @apiParam {String} street 街道.
+ * @apiParam {String} tag 标签.
+ * @apiParam {String} def 是否默认地址，1默认.
+ */
+
 
  // ------------------------------------------------------------------------------------------
 // SearchHistorySuccess.

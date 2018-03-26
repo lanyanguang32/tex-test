@@ -76,6 +76,37 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
         $api->post('search/history', 'SearchController@postHistory');
         //21 清空最近搜索产品
         $api->post('search/historyDel', 'SearchController@postHistoryDel');
+
+        //购物车
+        //22 历史购物车
+        $api->get('cart/history', 'CartController@getCartHistory');
+        //23 选择供应商
+        $api->get('cart/shop', 'CartController@getCartShop');
+        //24 添加型号
+        $api->post('cart/sku', 'CartController@postCartSku');
+        //25 编辑
+        $api->post('cart/sku/{id}/edit', 'CartController@postCartSkuEdit');
+        //26 删除
+        $api->post('cart/sku/{id}/del', 'CartController@postCartSkuDel');
+        //27 确认备货
+        $api->post('cart/stock', 'CartController@postCartStock');
+        //28 确认支付
+        $api->post('cart/payment', 'CartController@postCartPayment');
+        //29 购物车
+        $api->get('cart/list', 'CartController@getCartList');
+
+        //收货地址
+        //30 收货地址
+        $api->get('receiver/list', 'ReceiverController@getReceiverList');
+        //31 新增
+        $api->post('receiver', 'ReceiverController@postReceiver');
+        //32 编辑
+        $api->post('receiver/{id}/edit', 'ReceiverController@postReceiverEdit');
+        //33 删除
+        $api->post('receiver/{id}/del', 'ReceiverController@postReceiverDel');
+        //34 设置为默认
+        $api->post('receiver/{id}/def', 'ReceiverController@postReceiverDef');
+
     });
 });
 
