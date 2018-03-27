@@ -16,6 +16,8 @@ class Cartdel extends Model
             use Translatable,
         HasRelationships;
 
+         protected $fillable = ['user_id','sku_id','shop_id'];
+
 	public function userId()
     {
         return $this->hasMany(Voyager::modelClass('User'));
@@ -26,4 +28,8 @@ class Cartdel extends Model
         return $this->hasMany(Sku::class);
     }
 
+    public function sku()
+    {
+        return $this->belongsTo(Sku::class);
+    }
 }

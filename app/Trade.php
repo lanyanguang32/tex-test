@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Traits\HasRelationships;
 use TCG\Voyager\Traits\Translatable;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class Trade extends Model
@@ -16,6 +16,8 @@ class Trade extends Model
 
             use Translatable,
         HasRelationships;
+
+         protected $fillable = ['shop_id','payment','paytime','receivername','recevierphone', 'recevierprovince', 'receviercity', 'recevierarea', 'recevierstreet', 'receiveraddress', 'paymethod'];
 
 	public function userId()
     {

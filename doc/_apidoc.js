@@ -40,6 +40,22 @@
  */
 
   // ------------------------------------------------------------------------------------------
+// CartSuccess.
+// ------------------------------------------------------------------------------------------
+/**
+ * @apiDefine CartSuccess
+ * @apiSuccess {String} id 记录ID.
+ * @apiSuccess {String} price 价格.
+ * @apiSuccess {String} num 数量.
+ * @apiSuccess {String[]} sku 商品.
+ * @apiSuccess {String} sku.id 商品ID.
+ * @apiSuccess {String} sku.image 图片.
+ * @apiSuccess {String} sku.title 型号.
+ * @apiSuccess {String} sku.material 材质.
+ * @apiSuccess {String} sku.weight 克重.
+ */
+
+  // ------------------------------------------------------------------------------------------
 // ReceiverSuccess.
 // ------------------------------------------------------------------------------------------
 /**

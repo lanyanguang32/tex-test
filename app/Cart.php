@@ -16,6 +16,9 @@ class Cart extends Model
             use Translatable,
         HasRelationships;
 
+
+    protected $fillable = ['user_id','sku_id','price','num', 'status', 'shop_id'];
+
 	public function userId()
     {
         return $this->hasMany(Voyager::modelClass('User'));
@@ -26,4 +29,13 @@ class Cart extends Model
         return $this->hasMany(Sku::class);
     }
 
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class);
+    }
+
+    public function sku()
+    {
+        return $this->belongsTo(Sku::class);
+    }
 }
