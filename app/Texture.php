@@ -15,6 +15,8 @@ class Texture extends Model
             use Translatable,
         HasRelationships;
 
+         protected $fillable = ['shop_id','receivername','receiverphone', 'recevierprovince', 'receviercity', 'recevierarea', 'recevierstreet', 'receiveraddress', 'tid', 'user_id'];
+
 	public function userId()
     {
         return $this->hasMany(Voyager::modelClass('User'));
@@ -27,9 +29,14 @@ class Texture extends Model
             $this->user_id = Auth::user()->id;
         }
 
-        $this->tid = time().date('Ymd').rand(1001,9299);
+        //$this->tid = time().date('Ymd').rand(1001,9299);
 
         parent::save();
     }
        
+    
+    public function skus()
+    {
+        return $this->belongsTo(Texturesku::class, 'tid', 'tid');
+    }
 }

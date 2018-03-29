@@ -139,7 +139,7 @@ class CartController extends ApiController
               'shop_id'=>$cartPayment->shop_id,
               'payment'=>$cartPayment->payment,
               'paytime'=>date('Y-m-d H:i:s', time()),
-              'receivername'=>$receiver->name,
+              'receivername'=>$receiver->user,
               'recevierphone'=>$receiver->phone,
               'recevierprovince'=>$receiver->province,
               'receviercity'=>$receiver->city,
@@ -147,6 +147,7 @@ class CartController extends ApiController
               'recevierstreet'=>$receiver->street,
               'receiveraddress'=>'',
               'paymethod'=>'',
+              'tid'=>time().date('Ymd').rand(1001,9299),
             ]);
 
             $carts = Cart::whereIn('id', $cartIds)->with('sku')->get();
@@ -159,11 +160,13 @@ class CartController extends ApiController
                     'price' => $cart->price,
                     'num' => $cart->num,
                     'tid' => $trade->tid,
+                    'material' => $cart->material,
+                    'weight' => $cart->weight,
                 ]);
 
                 //同步备货
                 Stock::where('cart_id', $cart->id)->update([
-                  'mid'=>$mid,
+                  'mid'=>$mid->id,
                 ]);
 
                 //加入历史购物车

@@ -107,6 +107,24 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
         //34 设置为默认
         $api->post('receiver/{id}/def', 'ReceiverController@postReceiverDef');
 
+        //订单
+        //35 订单列表
+        $api->get('order/list', 'OrderController@getOrderList');
+        //36 发货
+        $api->post('order/{id}/ship', 'OrderController@postOrderShip');
+        //37 确认收货
+        $api->post('order/{id}/comfirm', 'OrderController@postOrderConfirm');
+        
+        //小样
+        //38 小样列表
+         $api->get('texture/list', 'TextureController@getTextureList');
+        //39 添加
+        $api->post('texture/sku', 'TextureController@postTextureSku');
+        //40 删除
+        $api->post('texture/sku/{id}/del', 'TextureController@postTextureSkuDel');
+        //41 提交
+        $api->post('texture', 'TextureController@postTexture');
+
     });
 });
 

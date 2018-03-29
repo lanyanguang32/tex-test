@@ -17,7 +17,7 @@ class Trade extends Model
             use Translatable,
         HasRelationships;
 
-         protected $fillable = ['shop_id','payment','paytime','receivername','recevierphone', 'recevierprovince', 'receviercity', 'recevierarea', 'recevierstreet', 'receiveraddress', 'paymethod'];
+         protected $fillable = ['shop_id','payment','paytime','receivername','recevierphone', 'recevierprovince', 'receviercity', 'recevierarea', 'recevierstreet', 'receiveraddress', 'paymethod', 'tid'];
 
 	public function userId()
     {
@@ -31,9 +31,14 @@ class Trade extends Model
             $this->user_id = Auth::user()->id;
         }
 
-        $this->tid = time().date('Ymd').rand(1001,9299);
+        //$this->tid = time().date('Ymd').rand(1001,9299);
 
         parent::save();
+    }
+
+    public function skus()
+    {
+        return $this->belongsTo(Tradesku::class, 'tid', 'tid');
     }
 
 }

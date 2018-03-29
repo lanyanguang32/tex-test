@@ -14,5 +14,11 @@ class Tradesku extends Model
             use Translatable,
         HasRelationships;
 
-         protected $fillable = ['title','price','num','tid', 'image'];
+         protected $fillable = ['title','price','num','tid', 'image', 'material', 'weight'];
+
+
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class, 'mid', 'id');
+    }
 }
