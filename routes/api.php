@@ -67,6 +67,9 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
     //18 3D面料试衣
     $api->post('3d/warp', 'WarpController@postWarp');
 
+    //? 店铺主页
+    //?
+
     $api->group(['middleware' => 'api.auth'], function($api) {
     //需要授权
         //最近搜索
@@ -125,6 +128,74 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
         //41 提交
         $api->post('texture', 'TextureController@postTexture');
 
+        //消息
+         //42 消息列表
+         $api->get('message/list', 'MessageController@getMessageList');
+         //43 阅读消息
+         $api->post('message/{id}/read', 'MessageController@postMessageRead');
+         //44 删除消息
+         $api->post('message/{id}/del', 'MessageController@postMessageDel');
+
+         //通讯录
+         //45 通讯录
+         $api->get('contact/list', 'ContactController@getContactList');
+         //46 添加
+         $api->post('contact', 'ContactController@postContact');
+         //47 编辑
+         $api->post('contact/{id}/edit', 'ContactController@postContactEdit');
+         //48 删除
+         $api->post('contact/{id}/del', 'ContactController@postContactDel');
+         //49 邀请
+         $api->post('contact/{id}/invite', 'ContactController@postContactInvite');
+
+         //我的
+         //50 收藏夹
+         $api->get('me/fav', 'MeController@getFavList');
+         //51 收藏／取消收藏
+          $api->post('me/fav/{id}/add', 'MeController@postFavAdd');
+          $api->post('me/fav/{id}/del', 'MeController@postFavDel');
+         //52 关注店铺
+         $api->get('me/shop', 'MeController@getShopList');
+         //53 关注／取消关注
+         $api->post('me/shop/{id}/follow', 'MeController@postShopFollow');
+         $api->post('me/shop/{id}/unfollow', 'MeController@postShopUnFollow');
+         //54 足迹
+         $api->get('me/footprint', 'MeController@getFootprintList');
+
+         //55 账号列表
+         $api->get('me/acclog/shop', 'MeController@getAcclogShop');
+         //56 打款
+         $api->post('me/acclog', 'MeController@postAcclog');
+         //账单
+         //66 账单列表
+         $api->get('me/acclog/list', 'MeController@getAcclogList');
+
+         //todo
+         //59 成员
+         $api->get('company/user', 'CompanyController@getCompanyUser');
+         //60 添加
+         $api->post('company/user', 'CompanyController@postCompanyUser');
+         //60 邀请
+         $api->post('company/invite', 'CompanyController@postCompanyUserInvite');
+         //60 取消邀请
+         $api->post('company/{id}/del', 'CompanyController@postCompanyUserDel');
+         //61 成员通过／拒绝
+         $api->post('company/{id}/apply', 'CompanyController@postCompanyApply');
+         $api->post('company/{id}/unapply', 'CompanyController@postCompanyUnApply');
+
+         //产品
+         $api->get('company/sku', 'CompanyController@getCompanySku');
+         //62 产品添加
+         $api->post('company/sku', 'CompanyController@postCompanySku');
+         //63 产品编辑
+         $api->post('company/sku/{id}/edit', 'CompanyController@postCompanySkuEdit');
+         //64 产品上／下架
+         $api->post('company/sku/{id}/shelf', 'CompanyController@postCompanySkuShelf');
+         $api->post('company/sku/{id}/unshelf', 'CompanyController@postCompanySkuUnShelf');
+         //65 产品删除
+         $api->post('company/sku/{id}/del', 'CompanyController@postCompanySkuDel');
+         
+         //经办人todo
     });
 });
 

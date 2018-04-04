@@ -7,27 +7,27 @@ use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Traits\HasRelationships;
 use TCG\Voyager\Traits\Translatable;
 
-class Fav extends Model
+class Follow extends Model
 {
     
         use Translatable,
         HasRelationships;
 
-     protected $fillable = ['user_id','sku_id'];
+     protected $fillable = ['user_id','shop_id'];
 
 	public function userId()
     {
         return $this->hasMany(Voyager::modelClass('User'));
     }
 
-    public function skuId()
+    public function shopId()
     {
-        return $this->hasMany(Sku::class);
+        return $this->hasMany(Shop::class);
     }
 
-    public function sku()
+    public function shop()
     {
-        return $this->belongsTo(Sku::class);
+        return $this->belongsTo(Shop::class);
     }
 
 }

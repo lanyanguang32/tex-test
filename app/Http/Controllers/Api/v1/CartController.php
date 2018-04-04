@@ -125,7 +125,7 @@ class CartController extends ApiController
     $cartIds = explode(',', $cartPayment->cart_ids);
 
       //关联扣款?
-        $max = Acclog::where('user_id', $user_id)->where('shop_id', $shop_id)->max('id');
+        $max = Acclog::where('user_id', $user_id)->where('shop_id', $shop_id)->where('review', 1)->max('id');
         if($max){
            $acclog = Acclog::find($max);
            if($acclog->balance>=$cartPayment->payment){
@@ -188,6 +188,7 @@ class CartController extends ApiController
             $newacclog->memo = '订单支出';
             $newacclog->tid = $trade->tid;
             $newacclog->balance = $acclog->balance - $cartPayment->payment;
+            $newacclog->review = 1;
             $newacclog->save();
             //
           }
