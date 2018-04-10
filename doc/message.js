@@ -5,7 +5,6 @@
  * @apiGroup Message
  * @apiExample Example usage:
  * curl -i http://localhost/message/list
- * @apiParam {Number} user_id 用户ID
  * @apiParam {Number} type 消息类型 0通知 1产品 2订单 3账户
  * @apiSuccess {String} id 记录ID.
  * @apiSuccess {String} title 消息标题.

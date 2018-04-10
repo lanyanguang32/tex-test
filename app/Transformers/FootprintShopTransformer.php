@@ -8,7 +8,7 @@ use League\Fractal\TransformerAbstract;
 class FootprintShopTransformer extends TransformerAbstract
 {
 
-    protected $defaultIncludes = ['skus'];
+    protected $defaultIncludes = ['shop'];
 
     public function transform(Footprint $footprint)
     {
@@ -19,7 +19,7 @@ class FootprintShopTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeSkus(Footprint $footprint)
+    public function includeShop(Footprint $footprint)
     {
         $skus = $footprint->shop->skus()->take(3)->get();
 

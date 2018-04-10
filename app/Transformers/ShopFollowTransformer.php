@@ -12,7 +12,7 @@ class ShopFollowTransformer extends TransformerAbstract
         return [
             'id' => $follow->shop->id,
             'image'=>\Voyager::image($follow->shop->image),
-            'name'=>$follow->shop->title,
+            'name'=>$follow->shop->name,
         ];
     }
 }

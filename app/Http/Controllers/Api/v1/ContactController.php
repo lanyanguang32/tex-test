@@ -31,6 +31,7 @@ class ContactController extends ApiController
 			'phone' => $request->phone,
 			'company' => $request->company,
 			'address' => $request->address,
+			'status'=>0,
 		]);
 
 		return $this->response->item($contact, new ContactTransformer());

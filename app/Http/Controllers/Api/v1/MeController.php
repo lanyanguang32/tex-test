@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\v1\ApiController;
 use App\Fav;
 use App\Footprint;
 use App\Follow;
+use App\Acclog;
 use App\Transformers\FavTransformer;
 use App\Transformers\ShopFollowTransformer;
 use App\Transformers\FootprintShopTransformer;
@@ -36,7 +37,7 @@ class MeController extends ApiController
 	{
 		$user_id = $this->user()->id;
 
-		Fav::updateOrCreate([
+		$fav = Fav::updateOrCreate([
 			'user_id'=>$user_id,
 			'sku_id'=>$id,
 		]);
@@ -67,7 +68,7 @@ class MeController extends ApiController
 	{
 		$user_id = $this->user()->id;
 
-		Follow::updateOrCreate([
+		$fav = Follow::updateOrCreate([
 			'user_id'=>$user_id,
 			'shop_id'=>$id,
 		]);
@@ -86,6 +87,8 @@ class MeController extends ApiController
 	//足迹
 	public function getFootprintList(Request $request)
 	{
+		$user_id = $this->user()->id;
+
 		$type = 0;
 
 		if($request->has('type')){
@@ -93,10 +96,10 @@ class MeController extends ApiController
 		}
 
 		if($type == 0){
-			$footprints = Footprint::where('user_id', $user_id)->where('type', $type)->with('shop')->get();
+			$footprints = Footprint::where('user_id', $user_id)->where('type', $type)->with('sku')->get();
 			return $this->response->collection($footprints, new FootprintSkuTransformer());
 		}else{
-			$footprints = Footprint::where('user_id', $user_id)->where('type', $type)->with('sku')->get();
+			$footprints = Footprint::where('user_id', $user_id)->where('type', $type)->with('shop')->get();
 			return $this->response->collection($footprints, new FootprintShopTransformer());
 		}
 	}
@@ -104,6 +107,8 @@ class MeController extends ApiController
 	//账号
 	public function getAcclogShop(Request $request)
 	{
+
+		$user_id = $this->user()->id;
 		$acclogs = Acclog::where('user_id', $user_id)->orderBy('id', 'desc')->groupBy('shop_id')->with('shop')->get();
 
 		return $this->response->collection($acclogs, new AcclogShopTransformer());
@@ -112,7 +117,9 @@ class MeController extends ApiController
 	//账单列表
 	public function getAcclogList(Request $request)
 	{
-		$acclogs = Acclog::where('user_id', $user_id)->with('shop')->get();
+		//审核后的汇总
+		$user_id = $this->user()->id;
+		$acclogs = Acclog::where('user_id', $user_id)->where('review', 1)->with('shop')->get();
 
 		return $this->response->collection($acclogs, new AcclogTransformer());
 	}
