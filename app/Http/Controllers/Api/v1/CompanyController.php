@@ -9,7 +9,11 @@ use App\ShopUser;
 use App\User;
 use App\Sku;
 use App\Transformers\ShopuserTransformer;
-use App\Transformers\CartSkuTransformer;
+use App\Transformers\CompanySkuTransformer;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Intervention\Image\Constraint;
+use Intervention\Image\Facades\Image;
 
 //公司
 class CompanyController extends ApiController
@@ -106,7 +110,7 @@ class CompanyController extends ApiController
     	$user_id = $this->user()->id;
     	$skus = Sku::where('user_id', $user_id)->get();
 
-    	return $this->response->collection($skus, new CartSkuTransformer());
+    	return $this->response->collection($skus, new CompanySkuTransformer());
     }
 
     //添加
@@ -114,17 +118,83 @@ class CompanyController extends ApiController
     {
     	$user_id = $this->user()->id;
 
-    	$sku = Sku::fill($request->all());
+    	$data = [
+    		'sku'=>$request->title,
+    		//'image'=>$image,
+    		'material'=>$request->material,
+    		'group'=>$request->group,
+    		'weight'=>$request->weight,
+    		'width'=>$request->width,
+    		'shrinkage'=>$request->shrinkage,
+    		'status'=>0,
+    	];
 
-    	return $this->response->item($sku, new CartSkuTransformer());
+    	#image
+   		if($request->hasFile('image')){
+   			$file = $request->file('image');
+   			$path = 'skus'.'/'.date('FY').'/';
+   			$filename = Str::random(20);
+	        // Make sure the filename does not exist, if it does, just regenerate
+	        while (Storage::disk(config('voyager.storage.disk'))->exists($path.$filename.'.'.$file->getClientOriginalExtension())) {
+	            $filename = Str::random(20);
+	        }
+
+	         Image::make($file);
+
+	         $image = $path.$filename.'.'.$file->getClientOriginalExtension();
+	         $data['image'] = $image;
+   		}
+
+    	$sku = Sku::create($data);
+
+    	if($request->has('tag')){
+    		$sku->tags()->sync(explode(',', $request->tag));
+    	}
+
+    	return $this->response->item($sku, new CompanySkuTransformer());
     }
 
     //编辑
     public function postCompanySkuEdit($id, Request $request)
     {
     	$user_id = $this->user()->id;
-    	$sku = Sku::where('user_id', $user_id)->where('id', $id)->update($request->all());
-    	return $this->response->item($sku, new CartSkuTransformer());
+    	$data = [
+    		'sku'=>$request->title,
+    		//'image'=>$image,
+    		'material'=>$request->material,
+    		'group'=>$request->group,
+    		'weight'=>$request->weight,
+    		'width'=>$request->width,
+    		'shrinkage'=>$request->shrinkage,
+    	];
+
+    	#image
+   		if($request->hasFile('image')){
+   			$file = $request->file('image');
+   			$path = 'skus'.'/'.date('FY').'/';
+   			$filename = Str::random(20);
+	        // Make sure the filename does not exist, if it does, just regenerate
+	        while (Storage::disk(config('voyager.storage.disk'))->exists($path.$filename.'.'.$file->getClientOriginalExtension())) {
+	            $filename = Str::random(20);
+	        }
+
+	         Image::make($file);
+
+	         $image = $path.$filename.'.'.$file->getClientOriginalExtension();
+	         $data['image'] = $image;
+   		}
+		#image
+
+    	$sku_id = Sku::where('user_id', $user_id)->where('id', $id)->update($data);
+
+    	#sync
+    	$sku = Sku::find($id);
+    	//sync
+    	if($request->has('tag')){
+    		$sku->tags()->sync(explode(',', $request->tag));
+    	}
+
+    	return $this->response->item($sku, new CompanySkuTransformer());
     }
 
     //删除

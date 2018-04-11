@@ -86,6 +86,7 @@ function postCompanyUnApply() { return; }
  * @apiSuccess {String} image 商品图片.
  * @apiSuccess {String} material 材质.
  * @apiSuccess {String} weight 平方克重.
+ * @apiSuccess {String} status 0 下架 1上架.
  */
 function getCompanySku() { return; }
 
@@ -101,6 +102,9 @@ function getCompanySku() { return; }
  * @apiParam {String} image 商品图片.
  * @apiParam {String} material 材质.
  * @apiParam {String} weight 平方克重.
+ * @apiParam {String} group 一花多色.
+ * @apiParam {String} width 门幅.
+ * @apiParam {String} shrinkage 缩水率.
  * @apiParam {String} tag 多个逗号分隔.
  */
 function postCompanySku() { return; }
@@ -118,11 +122,17 @@ function postCompanySku() { return; }
  * @apiParam {String} material 材质.
  * @apiParam {String} weight 平方克重.
  * @apiParam {String} tag 多个逗号分隔.
+ * @apiParam {String} group 一花多色.
+ * @apiParam {String} width 门幅.
+ * @apiParam {String} shrinkage 缩水率.
  * @apiSuccess {Number} id 记录ID.
  * @apiSuccess {String} title 商品标题.
  * @apiSuccess {String} image 商品图片.
  * @apiSuccess {String} material 材质.
  * @apiSuccess {String} weight 平方克重.
+ * @apiSuccess {String} group 一花多色.
+ * @apiSuccess {String} width 门幅.
+ * @apiSuccess {String} shrinkage 缩水率.
  * @apiSuccess {String} tag 多个逗号分隔.
  */
 function postCompanySkuEdit() { return; }
