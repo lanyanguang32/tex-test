@@ -176,12 +176,12 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
          //60 添加
          $api->post('company/user', 'CompanyController@postCompanyUser');
          //60 邀请
-         $api->post('company/invite', 'CompanyController@postCompanyUserInvite');
+         $api->post('company/user/invite', 'CompanyController@postCompanyUserInvite');
          //60 取消邀请
-         $api->post('company/{id}/del', 'CompanyController@postCompanyUserDel');
+         $api->post('company/user/{id}/del', 'CompanyController@postCompanyUserDel');
          //61 成员通过／拒绝
-         $api->post('company/{id}/apply', 'CompanyController@postCompanyApply');
-         $api->post('company/{id}/unapply', 'CompanyController@postCompanyUnApply');
+         $api->post('company/user/{id}/apply', 'CompanyController@postCompanyApply');
+         $api->post('company/user/{id}/unapply', 'CompanyController@postCompanyUnApply');
 
          //产品
          $api->get('company/sku', 'CompanyController@getCompanySku');
@@ -194,7 +194,8 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
          $api->post('company/sku/{id}/unshelf', 'CompanyController@postCompanySkuUnShelf');
          //65 产品删除
          $api->post('company/sku/{id}/del', 'CompanyController@postCompanySkuDel');
-         
+         //66 获取产品标签
+
          //经办人todo
     });
 });
