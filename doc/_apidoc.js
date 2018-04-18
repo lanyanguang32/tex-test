@@ -48,12 +48,14 @@
  * @apiSuccess {String} price 价格.
  * @apiSuccess {String} num 数量.
  * @apiSuccess {String} created 时间.
- * @apiSuccess {String[]} sku 商品.
+ * @apiSuccess {String} sku 商品.
  * @apiSuccess {String} sku.id 商品ID.
  * @apiSuccess {String} sku.image 图片.
  * @apiSuccess {String} sku.title 型号.
  * @apiSuccess {String} sku.material 材质.
  * @apiSuccess {String} sku.weight 克重.
+ * @apiSuccess {String[]} stocks 备货清单列表. 
+ * @apiSuccess {String} stocks.unit N匹米数.  
  */
 
   // ------------------------------------------------------------------------------------------

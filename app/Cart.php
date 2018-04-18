@@ -38,4 +38,9 @@ class Cart extends Model
     {
         return $this->belongsTo(Sku::class);
     }
+
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class, 'cart_id', 'id');
+    }
 }

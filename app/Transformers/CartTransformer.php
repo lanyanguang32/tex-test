@@ -8,7 +8,7 @@ use League\Fractal\TransformerAbstract;
 class CartTransformer extends TransformerAbstract
 {
 
-	protected $defaultIncludes = ['sku'];
+	protected $defaultIncludes = ['sku', 'stocks'];
 
     public function transform(Cart $cart)
     {
@@ -23,5 +23,12 @@ class CartTransformer extends TransformerAbstract
     public function includeSku(Cart $cart)
     {
         return $this->item($cart->sku, new CartSkuTransformer());
+    }
+
+    public function includeStocks(Cart $cart)
+    {
+        $stocks = $cart->stocks()->get();
+
+        return $this->collection($stocks, new StockTransformer());
     }
 }
