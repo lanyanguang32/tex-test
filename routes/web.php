@@ -13,6 +13,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Sku;
 
 
 Route::get('/', function () {
@@ -23,6 +24,29 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+//import
+Route::any('import', function(Request $request)
+{
+    $files = file_get_contents("tt.json");
+    $files = json_decode($files,true);
+
+    $s = $files['s'];
+
+    foreach ($s as $t['t']) {
+        if(str_contains($t['t'], '系列')){
+            continue;
+        } 
+
+        Sku::create([
+            'sku'=>
+
+        ]);
+    }
+
+
+
+}
 
 //test
 Route::any('captcha-test', function(Request $request)

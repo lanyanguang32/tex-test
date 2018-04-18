@@ -16,6 +16,7 @@ class CartTransformer extends TransformerAbstract
             'id' => $cart->id,
             'price' => $cart->price,
             'num' => $cart->num,
+            'created' => $cart->created_at->toDateTimeString(),
         ];
     }
 

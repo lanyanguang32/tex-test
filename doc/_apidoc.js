@@ -47,6 +47,7 @@
  * @apiSuccess {String} id 记录ID.
  * @apiSuccess {String} price 价格.
  * @apiSuccess {String} num 数量.
+ * @apiSuccess {String} created 时间.
  * @apiSuccess {String[]} sku 商品.
  * @apiSuccess {String} sku.id 商品ID.
  * @apiSuccess {String} sku.image 图片.
