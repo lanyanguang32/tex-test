@@ -16,7 +16,7 @@ class RecommendSkuTransformer extends TransformerAbstract
             'title'=>$sku->sku,
             'material'=>$sku->material,
             'weight'=>$sku->weight,
-            'is_fav'=>0,//?是否收藏
+            'is_fav'=>$sku->favorited(),//?是否收藏
         ];
     }
 }

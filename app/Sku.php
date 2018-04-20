@@ -9,7 +9,7 @@ use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Traits\HasRelationships;
 use TCG\Voyager\Traits\Resizable;
 use TCG\Voyager\Traits\Translatable;
-
+use App\Fav;
 
 
 class Sku extends Model
@@ -38,5 +38,16 @@ class Sku extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class,'sku_tag','sku_id','tag_id');
+    }
+
+    public function favorited()
+    {
+        if(app('Dingo\Api\Auth\Auth')->user()){
+            return (Fav::where('user_id', app('Dingo\Api\Auth\Auth')->user()->id)
+                            ->where('sku_id', $this->id)
+                            ->first()) ? 1 : 0;
+        }else{
+            return 0;
+        }
     }
 }
