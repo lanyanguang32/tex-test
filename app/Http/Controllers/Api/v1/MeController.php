@@ -109,7 +109,12 @@ class MeController extends ApiController
 	{
 
 		$user_id = $this->user()->id;
-		$acclogs = Acclog::where('user_id', $user_id)->orderBy('id', 'desc')->groupBy('shop_id')->with('shop')->get();
+
+		$max = \DB::select("select max(id) as id from acclogs group by shop_id");
+
+		$max = collect($max)->pluck('id')->toArray();
+
+		$acclogs = Acclog::whereIn('id', $max)->with('shop')->get();
 
 		return $this->response->collection($acclogs, new AcclogShopTransformer());
 	}
