@@ -53,16 +53,18 @@ class CartController extends ApiController
   {
       $user_id = $this->user()->id;
 
-      $cart = Cart::create([
+      $newcart = Cart::firstOrNew([
         'user_id' => $user_id,
         'sku_id' => $cart->sku_id,
         'price' => $cart->price,
-        'num' => $cart->num,
         'status' => 0,
         'shop_id' => $cart->shop_id,
      ]);
 
-     return $this->response->item($cart, new CartTransformer());
+      $newcart->num = $cart->num;
+      $newcart->save();
+
+     return $this->response->item($newcart, new CartTransformer());
   }
 
   //编辑
