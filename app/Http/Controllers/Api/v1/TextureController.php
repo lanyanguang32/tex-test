@@ -29,7 +29,7 @@ class TextureController extends ApiController
 
       if($status == 1){
 
-          $textures = Texture::where('user_id', $user_id)->where('shop_id', $shop_id)->where('status', $status)->with(['skus'])->get();
+          $textures = Texture::where('user_id', $user_id)->where('shop_id', $shop_id)->with(['skus'])->get();
 
           return $this->response->collection($textures, new TextureTransformer());
       }else{
