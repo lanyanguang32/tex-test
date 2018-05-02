@@ -47,11 +47,10 @@ function getCartHistory() { return; }
  * @apiExample Example usage:
  * curl -i http://localhost/cart/sku
  * @apiPermission admin
- * @apiParam sku_id 商品ID
+ * @apiParam sku_id 商品ID,多个逗号分隔.
  * @apiParam shop_id 店铺ID
- * @apiParam price 价格
- * @apiParam num 数量
- * @apiUse GoodsSuccess
+ * @apiParam price 价格,可以不传
+ * @apiParam num 数量,可以不传
  */
 function postCartSku() { return; }
 
