@@ -59,10 +59,11 @@ class CartController extends ApiController
          $newcart = Cart::firstOrNew([
             'user_id' => $user_id,
             'sku_id' => $sku_id,
-            'price' => 0,
             'status' => 0,
             'shop_id' => $cart->shop_id,
         ]);
+
+         $newcart->save();
       }
 
      return $this->response->noContent();

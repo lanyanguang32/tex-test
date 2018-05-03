@@ -13,8 +13,8 @@ class CartRequest extends FormRequest
     {
         return [
             'sku_id' => 'required|exists:skus,id',
-            'price' => 'required',
-            'num' => 'required',
+            //'price' => 'required',
+            //'num' => 'required',
             'shop_id' => 'required',
         ];
     }
