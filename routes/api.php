@@ -185,6 +185,8 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
 
          //产品
          $api->get('company/sku', 'CompanyController@getCompanySku');
+         //详情
+         $api->get('company/sku/{id}/view', 'CompanyController@getCompanySkuView');
          //62 产品添加
          $api->post('company/sku', 'CompanyController@postCompanySku');
          //63 产品编辑

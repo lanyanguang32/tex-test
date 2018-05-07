@@ -113,6 +113,15 @@ class CompanyController extends ApiController
     	return $this->response->collection($skus, new CompanySkuTransformer());
     }
 
+        //产品详情
+    public function getCompanySkuView($id)
+    {
+        $user_id = $this->user()->id;
+        $sku = Sku::where('user_id', $user_id)->where('id', $id)->first();
+
+        return $this->response->item($sku, new CompanySkuTransformer());
+    }
+
     //添加
     public function postCompanySku(Request $request)
     {

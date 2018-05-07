@@ -91,6 +91,26 @@ function postCompanyUnApply() { return; }
 function getCompanySku() { return; }
 
 /**
+ * @api {get} /company/sku/{id}/view 产品详情
+ * @apiVersion 0.1.0
+ * @apiName getCompanySkuView
+ * @apiGroup Company
+ * @apiExample Example usage:
+ * curl -i http://localhost/company/sku/{id}/view
+ * @apiPermission admin
+ * @apiSuccess {Number} id 记录ID.
+ * @apiSuccess {String} title 商品标题.
+ * @apiSuccess {String} image 商品图片.
+ * @apiSuccess {String} material 材质.
+ * @apiSuccess {String} weight 平方克重.
+ * @apiSuccess {String} group 一花多色.
+ * @apiSuccess {String} width 门幅.
+ * @apiSuccess {String} shrinkage 缩水率.
+ * @apiSuccess {String} tag 多个逗号分隔.
+ */
+function getCompanySkuView() { return; }
+
+/**
  * @api {post} /company/sku 添加产品
  * @apiVersion 0.1.0
  * @apiName postCompanySku
