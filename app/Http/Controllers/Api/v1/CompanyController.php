@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\v1\ApiController;
 use App\Shop;
-use App\ShopUser;
+use App\Shopuser;
 use App\User;
 use App\Sku;
 use App\Transformers\ShopuserTransformer;
