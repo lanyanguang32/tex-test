@@ -1,4 +1,20 @@
 /**
+ * @api {get} /me/info 用户信息
+ * @apiVersion 0.1.0
+ * @apiName getUserInfo
+ * @apiGroup Me
+ * @apiExample Example usage:
+ * curl -i http://localhost/me/info
+ * @apiSuccess {String} id 记录ID.
+ * @apiSuccess {String} phone 手机号码.
+ * @apiSuccess {String} name 昵称. 
+ * @apiSuccess {String} avatar 头像. 
+ * @apiSuccess {Boolean} admin 1是 0否. 
+ * @apiPermission admin
+ */
+function getUserInfo() { return; }
+
+/**
  * @api {get} /me/fav 收藏夹
  * @apiVersion 0.1.0
  * @apiName getFavList

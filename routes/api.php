@@ -149,6 +149,8 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
          $api->post('contact/{id}/invite', 'ContactController@postContactInvite');
 
          //我的
+         //info
+          $api->get('me/info', 'MeController@getUserInfo');
          //50 收藏夹
          $api->get('me/fav', 'MeController@getFavList');
          //51 收藏／取消收藏

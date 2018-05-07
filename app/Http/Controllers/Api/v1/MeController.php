@@ -14,6 +14,7 @@ use App\Transformers\FootprintShopTransformer;
 use App\Transformers\FootprintSkuTransformer;
 use App\Transformers\AcclogTransformer;
 use App\Transformers\AcclogShopTransformer;
+use App\Transformers\UserInfoTransformer;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Constraint;
@@ -22,6 +23,13 @@ use Intervention\Image\Facades\Image;
 //我的
 class MeController extends ApiController
 {
+	//info
+	public function getUserInfo()
+	{
+		$user = $this->user();
+		return $this->response->item($user, new UserInfoTransformer());
+	}
+
 	//收藏夹
 	public function getFavList()
 	{

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Shop;
 
 class User extends \TCG\Voyager\Models\User implements JWTSubject
 {
@@ -48,5 +49,14 @@ class User extends \TCG\Voyager\Models\User implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function is_admin()
+    {
+        if(app('Dingo\Api\Auth\Auth')->user()){
+            return (Shop::where('user_id', app('Dingo\Api\Auth\Auth')->user()->id)->first()) ? 1 : 0;
+        }else{
+            return 0;
+        }
     }
 }
