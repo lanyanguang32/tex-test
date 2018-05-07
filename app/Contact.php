@@ -16,5 +16,5 @@ class Contact extends Model
     use Translatable,
         HasRelationships;
 
-        protected $fillable = ['user_id', 'name', 'phone', 'company', 'address'];
+        protected $fillable = ['user_id', 'name', 'phone', 'company', 'address', 'status'];
 }
