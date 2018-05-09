@@ -17,7 +17,7 @@
 function getContactList() { return; }
 
 /**
- * @api {get} /contact/{id}/view 通讯录
+ * @api {get} /contact/{id}/view 通讯录详情
  * @apiVersion 0.1.0
  * @apiName getContactView
  * @apiGroup Contact
