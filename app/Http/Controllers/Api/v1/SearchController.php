@@ -52,7 +52,7 @@ class SearchController extends ApiController
         }elseif($type == 3){
            $viewshop_ids = Search::where('user_id', $user_id)->where('tag', 3)->pluck('tag_id');
 
-           $viewshops = Shop::whereIn('id', $shop_ids)->take(9)->latest('created_at')->get();
+           $viewshops = Shop::whereIn('id', $viewshop_ids)->take(9)->latest('created_at')->get();
 
            $resource = new Fractal\Resource\Collection($viewshops, new ShopTransformer);
 
