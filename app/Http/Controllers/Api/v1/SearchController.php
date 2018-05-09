@@ -57,38 +57,64 @@ class SearchController extends ApiController
            $resource = new Fractal\Resource\Collection($viewshops, new ShopTransformer);
 
            $data['viewshops'] = $fractal->createData($resource)->toArray();
+        }else{
+            $sku_ids = Search::where('user_id', $user_id)->where('tag', 1)->pluck('tag_id');
+
+            $skus = Sku::whereIn('id', $sku_ids)->take(9)->latest('created_at')->get();
+
+            $resource = new Fractal\Resource\Collection($skus, new RecommendSkuTransformer);
+
+            $data['skus'] = $fractal->createData($resource)->toArray();
+
+
+            $shop_ids = Search::where('user_id', $user_id)->where('tag', 2)->pluck('tag_id');
+
+            $shops = Shop::whereIn('id', $shop_ids)->take(9)->latest('created_at')->get();
+
+            $resource = new Fractal\Resource\Collection($shops, new ShopTransformer);
+
+            $data['shops'] = $fractal->createData($resource)->toArray();
+
+
+            $viewshop_ids = Search::where('user_id', $user_id)->where('tag', 3)->pluck('tag_id');
+
+            $viewshops = Shop::whereIn('id', $viewshop_ids)->take(9)->latest('created_at')->get();
+
+            $resource = new Fractal\Resource\Collection($viewshops, new ShopTransformer);
+
+            $data['viewshops'] = $fractal->createData($resource)->toArray();
         } 
 
         return $this->response->array($data);
+      }else{
+            $sku_ids = Search::where('user_id', $user_id)->where('tag', 1)->pluck('tag_id');
+
+            $skus = Sku::whereIn('id', $sku_ids)->take(9)->latest('created_at')->get();
+
+            $resource = new Fractal\Resource\Collection($skus, new RecommendSkuTransformer);
+
+            $data['skus'] = $fractal->createData($resource)->toArray();
+
+
+            $shop_ids = Search::where('user_id', $user_id)->where('tag', 2)->pluck('tag_id');
+
+            $shops = Shop::whereIn('id', $shop_ids)->take(9)->latest('created_at')->get();
+
+            $resource = new Fractal\Resource\Collection($shops, new ShopTransformer);
+
+            $data['shops'] = $fractal->createData($resource)->toArray();
+
+
+            $viewshop_ids = Search::where('user_id', $user_id)->where('tag', 3)->pluck('tag_id');
+
+            $viewshops = Shop::whereIn('id', $viewshop_ids)->take(9)->latest('created_at')->get();
+
+            $resource = new Fractal\Resource\Collection($viewshops, new ShopTransformer);
+
+            $data['viewshops'] = $fractal->createData($resource)->toArray();
+
+            return $this->response->array($data);
       }
-
-       $sku_ids = Search::where('user_id', $user_id)->where('tag', 1)->pluck('tag_id');
-
-       $skus = Sku::whereIn('id', $sku_ids)->take(9)->latest('created_at')->get();
-
-       $resource = new Fractal\Resource\Collection($skus, new RecommendSkuTransformer);
-
-       $data['skus'] = $fractal->createData($resource)->toArray();
-
-
-       $shop_ids = Search::where('user_id', $user_id)->where('tag', 2)->pluck('tag_id');
-
-       $shops = Shop::whereIn('id', $shop_ids)->take(9)->latest('created_at')->get();
-
-       $resource = new Fractal\Resource\Collection($shops, new ShopTransformer);
-
-       $data['shops'] = $fractal->createData($resource)->toArray();
-
-
-       $viewshop_ids = Search::where('user_id', $user_id)->where('tag', 3)->pluck('tag_id');
-
-       $viewshops = Shop::whereIn('id', $shop_ids)->take(9)->latest('created_at')->get();
-
-       $resource = new Fractal\Resource\Collection($viewshops, new ShopTransformer);
-
-       $data['viewshops'] = $fractal->createData($resource)->toArray();
-
-       return $this->response->array($data);
 
     }
 
