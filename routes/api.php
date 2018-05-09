@@ -139,6 +139,8 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
          //通讯录
          //45 通讯录
          $api->get('contact/list', 'ContactController@getContactList');
+         //详情
+         $api->get('contact/{id}/view', 'ContactController@getContactView');
          //46 添加
          $api->post('contact', 'ContactController@postContact');
          //47 编辑

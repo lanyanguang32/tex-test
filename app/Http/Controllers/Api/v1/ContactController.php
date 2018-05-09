@@ -37,6 +37,16 @@ class ContactController extends ApiController
 		return $this->response->item($contact, new ContactTransformer());
 	}
 
+	//详情
+	public function getContactView($id)
+	{
+		$user_id = $this->user()->id;
+
+		$contact = Contact::where('id', $id)->where('user_id', $user_id)->first();
+
+		return $this->response->item($contact, new ContactTransformer());
+	}
+
 	//编辑
 	public function postContactEdit($id, Request $request)
 	{

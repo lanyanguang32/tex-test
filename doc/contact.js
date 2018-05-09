@@ -17,6 +17,24 @@
 function getContactList() { return; }
 
 /**
+ * @api {get} /contact/{id}/view 通讯录
+ * @apiVersion 0.1.0
+ * @apiName getContactView
+ * @apiGroup Contact
+ * @apiExample Example usage:
+ * curl -i http://localhost/contact/{id}/view
+ * @apiSuccess {String} id 记录ID.
+ * @apiSuccess {String} name 名称.
+ * @apiSuccess {String} created 消息时间. 
+ * @apiSuccess {String} phone 手机号码. 
+ * @apiSuccess {String} company 公司名称. 
+ * @apiSuccess {String} address 联系地址. 
+ * @apiSuccess {String} status 状态 0未邀请 1已邀请 2 已注册. 
+ * @apiPermission admin
+ */
+function getContactView() { return; }
+
+/**
  * @api {post} /contact 添加
  * @apiVersion 0.1.0
  * @apiName postContact
