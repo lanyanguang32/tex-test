@@ -86,6 +86,7 @@ function postCartSkuDel() { return; }
  * @apiGroup Cart
  * @apiExample Example usage:
  * curl -i http://localhost/cart/stock
+ * @apiParam cart_ids 确认配货的cart_id,多个逗号分隔。
  * @apiPermission admin
  */
 function postCartStock() { return; }
