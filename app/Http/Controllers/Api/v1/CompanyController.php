@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Constraint;
 use Intervention\Image\Facades\Image;
+use App\Http\Requests\Api\CompanyUserRequest;
 
 //公司
 class CompanyController extends ApiController
@@ -59,7 +60,7 @@ class CompanyController extends ApiController
 	}
 
 	//添加用户 todo request phone
-	public function postCompanyUser(Request $request)
+	public function postCompanyUser(CompanyUserRequest $request)
 	{
 		$user_id = $this->user()->id;
 
