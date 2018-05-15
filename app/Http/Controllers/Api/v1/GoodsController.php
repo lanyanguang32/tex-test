@@ -7,9 +7,11 @@ use App\Http\Controllers\Api\v1\ApiController;
 use App\Sku;
 use App\Tag;
 use App\Shop;
+use App\Footprint;
 use App\Transformers\SkuTransformer;
 use App\Transformers\RecommendSkuTransformer;
 use App\Transformers\ShopResultTransformer;
+use App\Transformers\ShopDetailTransformer;
 
 class GoodsController extends ApiController
 {
@@ -57,6 +59,30 @@ class GoodsController extends ApiController
      	}
     }
 
+    //店铺详情
+    public function getShopDetail(Request $request)
+    {
+        $shop = Shop::where('user_id', $request->id)->first();
+
+        if(!$shop){
+            return $this->errorCustom('请求实体不存在');
+        }
+
+        if($this->user()){
+
+            $user_id = $this->user()->id;
+
+            //足迹|店铺
+            Footprint::updateOrCreate([
+                'user_id' => $user_id,
+                'type' => 1,
+                'type_id' => $request->id,
+            ]);
+        }
+
+        return $this->response->item($shop, new ShopDetailTransformer());
+    }
+
     //商品详情
     public function getGoodsDetail(Request $request)
     {
@@ -66,6 +92,18 @@ class GoodsController extends ApiController
      	if(!$sku){
      		return $this->errorCustom('请求实体不存在');
      	}
+
+        if($this->user()){
+
+            $user_id = $this->user()->id;
+
+            //足迹
+            Footprint::updateOrCreate([
+                'user_id' => $user_id,
+                'type' => 0,
+                'type_id' => $request->id,
+            ]);
+        }
 
     	return $this->response->item($sku, new SkuTransformer());
     }

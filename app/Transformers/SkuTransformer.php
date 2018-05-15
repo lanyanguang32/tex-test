@@ -18,6 +18,7 @@ class SkuTransformer extends TransformerAbstract
             'material'=>$sku->material,
             'weight'=>$sku->weight,
             'is_fav'=>$sku->favorited(),//?是否收藏
+            'shop_id'=>$sku->user_id,
         ];
     }
 

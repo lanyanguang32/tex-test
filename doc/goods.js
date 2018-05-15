@@ -25,3 +25,14 @@ function postGoodsFind() { return; }
  * @apiUse GoodsDeailSuccess
  */
 function getGoodsDetail() { return; }
+
+/**
+ * @api {get} /shop/detail/:id 店铺详情
+ * @apiVersion 0.1.0
+ * @apiName getShopDetail
+ * @apiGroup Goods
+ * @apiExample Example usage:
+ * curl -i http://localhost/shop/detail/:id 
+ * @apiUse ShopSuccess
+ */
+function getShopDetail() { return; }

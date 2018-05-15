@@ -1,4 +1,19 @@
 /**
+ * @api {get} /message/count 消息统计
+ * @apiVersion 0.1.0
+ * @apiName getMessageCount
+ * @apiGroup Message
+ * @apiExample Example usage:
+ * curl -i http://localhost/message/count
+ * @apiSuccess {String} notices 通知.
+ * @apiSuccess {String} skus 产品. 
+ * @apiSuccess {String} orders 订单. 
+ * @apiSuccess {String} accounts 账户. 
+ * @apiPermission admin
+ */
+function getMessageCount() { return; }
+
+/**
  * @api {get} /message/list 消息列表
  * @apiVersion 0.1.0
  * @apiName getMessageList

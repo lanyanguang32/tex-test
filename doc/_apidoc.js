@@ -246,6 +246,7 @@
  * @apiSuccess {String} weight 门幅.
  * @apiSuccess {String} shrinkage 缩水率.
  * @apiSuccess {String} is_fav 是否收藏.
+ * @apiSuccess {String} shop_id 店铺ID.
  * @apiSuccess {String[]} simlilar 一花多色.
  * @apiSuccess {String} simlilar.id 商品ID.
  * @apiSuccess {String} simlilar.sku 商品标题.

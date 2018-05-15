@@ -1,4 +1,18 @@
 /**
+ * @api {get} /me/count 数据统计
+ * @apiVersion 0.1.0
+ * @apiName getCount
+ * @apiGroup Me
+ * @apiExample Example usage:
+ * curl -i http://localhost/me/count
+ * @apiSuccess {String} favs 收藏.
+ * @apiSuccess {String} follows 关注.
+ * @apiSuccess {String} footprints 足迹. 
+ * @apiPermission admin
+ */
+function getCount() { return; }
+
+/**
  * @api {get} /me/info 用户信息
  * @apiVersion 0.1.0
  * @apiName getUserInfo

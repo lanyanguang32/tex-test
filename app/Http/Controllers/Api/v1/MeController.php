@@ -23,6 +23,22 @@ use Intervention\Image\Facades\Image;
 //我的
 class MeController extends ApiController
 {
+	//count
+	public function getCount()
+	{
+		$user_id = $this->user()->id;
+
+		$favs = Fav::where('user_id', $user_id)->count();
+		$follows = Follow::where('user_id', $user_id)->count();
+		$footprints = Footprint::where('user_id', $user_id)->count();
+
+		return $this->response->array([
+			'favs'=>$favs,
+			'follows'=>$follows,
+			'footprints'=>$footprints,
+		]);
+	}
+
 	//info
 	public function getUserInfo()
 	{

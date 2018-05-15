@@ -58,6 +58,8 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
     $api->post('goods/find', 'GoodsController@postGoodsFind');
     //15 商品详情
     $api->get('goods/detail/{id}', 'GoodsController@getGoodsDetail');
+    // 店铺详情
+    $api->get('shop/detail/{id}', 'GoodsController@getShopDetail');
 
     //3D
     //16 3D服装行业
@@ -129,6 +131,8 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
         $api->post('texture', 'TextureController@postTexture');
 
         //消息
+         //消息统计
+         $api->get('message/count', 'MessageController@getMessageCount');
          //42 消息列表
          $api->get('message/list', 'MessageController@getMessageList');
          //43 阅读消息
@@ -151,6 +155,8 @@ $api->version('v1', ['namespace'=> 'App\Http\Controllers\Api\v1'], function ($ap
          $api->post('contact/{id}/invite', 'ContactController@postContactInvite');
 
          //我的
+         //数据统计
+          $api->get('me/count', 'MeController@getCount');
          //info
           $api->get('me/info', 'MeController@getUserInfo');
          //50 收藏夹
